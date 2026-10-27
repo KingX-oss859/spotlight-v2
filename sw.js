@@ -1,0 +1,4 @@
+const C='spot2-v1',F=["./", "index.html", "manifest.webmanifest", "icon-192.png", "icon-512.png", "bird.webp", "chick.webp", "chick2.webp", "chicken.webp", "chuckles.webp", "crocodile.webp", "dolphin.webp", "elephant.webp", "emu.webp", "fish.webp", "goat.webp", "horse.webp", "kangaroo.webp", "men.webp", "p07.webp", "p08.webp", "p09.webp", "p10.webp", "p11.webp", "p12.webp", "p13.webp", "p14.webp", "p18.webp", "snake.webp", "spider.webp", "story1.webp", "story2.webp", "story3.webp", "story4.webp", "story5.webp", "story6.webp", "tortoise.webp", "turkey.webp", "whale.webp"];
+self.addEventListener('install',e=>{e.waitUntil(caches.open(C).then(c=>c.addAll(F)));self.skipWaiting()});
+self.addEventListener('activate',e=>e.waitUntil(caches.keys().then(k=>Promise.all(k.filter(x=>x!=C).map(x=>caches.delete(x)))).then(()=>clients.claim())));
+self.addEventListener('fetch',e=>e.respondWith(caches.match(e.request).then(r=>r||fetch(e.request))));

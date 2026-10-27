@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="ru"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#7b4fc4"><link rel="manifest" href="manifest.webmanifest"><link rel="icon" href="icon-192.png">
+<title>Spotlight 3 · Module 5</title>
+<style>
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{margin:0;font-family:system-ui,sans-serif;background:linear-gradient(#e9defa,#d8f0ff) fixed;color:#1d1535}
+#app{max-width:480px;margin:0 auto;padding:14px;display:flex;flex-direction:column;gap:12px;min-height:100dvh}
+.hd{display:flex;align-items:center;gap:12px;background:#fff;border-radius:20px;padding:10px 14px;box-shadow:0 3px 10px #0002}
+.av{width:64px;height:64px;border-radius:50%;object-fit:cover;background:#cfe9a5;border:3px solid #7b4fc4}
+.xp{margin-left:auto;font-size:22px;font-weight:800}
+h2{margin:6px 2px 0;color:#5b34a0;font-size:19px}
+.g{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+button{font:inherit;font-size:19px;font-weight:700;border-radius:18px;border:0;padding:14px;background:#fff;color:inherit;width:100%;box-shadow:0 3px 0 #0003;cursor:pointer}
+button:active{transform:translateY(2px)}
+.tile{display:flex;flex-direction:column;align-items:center;gap:4px;font-size:16px;min-height:112px;justify-content:center}.tile span{font-size:34px}.tile small{font-size:16px}
+.pg{background:#e8defb;font-size:16px}.m{background:#7b4fc4;color:#fff}
+.card{background:#fff;border-radius:22px;padding:18px 14px;text-align:center;font-size:25px;font-weight:800;box-shadow:0 3px 10px #0002;display:flex;flex-direction:column;gap:10px;align-items:center}
+.card.rd{font-size:19px;font-weight:600;text-align:left}
+.pic{max-width:70%;max-height:200px;border-radius:14px}.card .pic[src$="emu.webp"]{max-width:100%}
+.bar{height:12px;border-radius:6px;background:#fff;overflow:hidden}.bar i{display:block;height:100%;background:#7b4fc4;transition:width .3s}
+input{font:inherit;font-size:22px;border-radius:16px;border:3px solid #7b4fc4;padding:14px;width:100%;text-align:center}
+.ok{background:#b9f0a0!important}.bad{background:#ffb9ae!important}
+#fb{min-height:28px;text-align:center;font-size:21px;font-weight:800}
+.hide{display:none!important}
+.say{width:auto;padding:6px 16px;font-size:22px}
+.pan{display:grid;grid-template-columns:1fr 1fr;gap:8px}.pan div{position:relative;border-radius:12px;overflow:hidden;border:4px solid #fff;box-shadow:0 2px 6px #0003}
+.pan img{width:100%;display:block}.pan b{position:absolute;top:4px;left:4px;background:#7b4fc4;color:#fff;border-radius:50%;width:30px;height:30px;text-align:center;line-height:30px}
+.zs{display:grid;grid-template-columns:1fr 1fr;gap:10px}.z{min-height:150px;border-radius:18px;border:3px dashed #7b4fc4;background:#fff8;padding:6px;display:flex;flex-wrap:wrap;gap:4px;align-content:flex-start;font-weight:800;text-align:center}.z h3{width:100%;margin:2px;font-size:16px}
+.z img{width:46%;border-radius:8px}
+.pool{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;min-height:100px}
+.pool img{width:84px;height:70px;object-fit:cover;border-radius:10px;border:4px solid #fff;touch-action:none;position:relative}
+.pool img.sel{border-color:#7b4fc4}
+.shake{animation:sh .35s}@keyframes sh{25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
+.cf{position:fixed;top:-30px;font-size:28px;animation:fall 1.6s ease-in forwards;z-index:9;pointer-events:none}@keyframes fall{to{transform:translateY(105vh) rotate(360deg)}}
+.gal img{width:100%;border-radius:8px;margin-bottom:8px}
+</style></head><body><div id="app"></div>
+<script>
+const D={"units":[{"id":"u9","title":"Unit 9 · Cows are funny!","pages":["p07.webp","p08.webp","p09.webp","p10.webp"],"acts":[{"id":"a_story","icon":"🚂","title":"Расставь историю","t":"order","imgs":["story1.webp","story2.webp","story3.webp","story4.webp","story5.webp","story6.webp"]},{"id":"a_plural","icon":"👨‍👨‍👦","title":"Один и много","t":"quiz","tasks":[{"t":"fill","q":"Chuckles has got two big ___ (foot).","a":"feet","img":null},{"t":"fill","q":"Baby Alex has got one small ___ (tooth).","a":"tooth","img":null},{"t":"fill","q":"All the ___ (child) in the class have got new books.","a":"children","img":null},{"t":"fill","q":"Mickey Mouse and Minnie Mouse are funny ___ (mouse).","a":"mice","img":null},{"t":"fill","q":"These ___ (man) are from the UK.","a":"men","img":"men.webp"},{"t":"fill","q":"Look! This ___ (fish) is pink and green!","a":"fish","img":"fish.webp"},{"t":"fill","q":"Is that ___ (woman) your mother?","a":"woman","img":null},{"t":"fill","q":"Have you got any ___ (sheep) on your farm?","a":"sheep","img":null}]}]},{"id":"u10","title":"Unit 10 · Clever animals!","pages":["p11.webp","p12.webp","p13.webp","p14.webp","p18.webp"],"acts":[{"id":"a_can","icon":"🕷️","title":"Can or can't?","t":"quiz","tasks":[{"t":"mc","q":"Can a spider crawl?","a":"Yes","o":["Yes","No"],"img":"spider.webp","say":null},{"t":"mc","q":"Can a spider swim?","a":"No","o":["No","Yes"],"img":"spider.webp","say":null},{"t":"mc","q":"Can a bird fly?","a":"Yes","o":["Yes","No"],"img":"bird.webp","say":null},{"t":"mc","q":"Can a dolphin swim?","a":"Yes","o":["Yes","No"],"img":"dolphin.webp","say":null},{"t":"mc","q":"Can a dolphin walk?","a":"No","o":["No","Yes"],"img":"dolphin.webp","say":null},{"t":"mc","q":"Can a tortoise walk?","a":"Yes","o":["Yes","No"],"img":"tortoise.webp","say":null},{"t":"mc","q":"Can a tortoise fly?","a":"No","o":["No","Yes"],"img":"tortoise.webp","say":null}]},{"id":"a_chuck","icon":"🐒","title":"Чаклз","t":"quiz","tasks":[{"t":"read","q":"I've got a pet chimp. His name is Chuckles. He's eleven! Chuckles has got big ears and a fat body. He's very cute! Chuckles is very clever, too! He can run, jump and climb. He can dance, too! Oh, I love Chuckles!","img":"chuckles.webp"},{"t":"mc","q":"How old is Chuckles?","a":"He's eleven","o":["He's eleven","He's twelve","He's five"],"img":null,"say":null},{"t":"mc","q":"Has he got big ears?","a":"Yes","o":["Yes","No"],"img":null,"say":null},{"t":"mc","q":"Has he got a thin body?","a":"No","o":["No","Yes"],"img":null,"say":null},{"t":"mc","q":"Is he clever?","a":"Yes","o":["Yes","No"],"img":null,"say":null},{"t":"mc","q":"Can he climb?","a":"Yes","o":["Yes","No"],"img":null,"say":null},{"t":"mc","q":"Can he dance?","a":"Yes","o":["Yes","No"],"img":null,"say":null}]},{"id":"a_sort","icon":"🐐","title":"Домашние или дикие?","t":"sort","cats":["Domesticated","Wild"],"items":[["goat",0],["chicken",0],["horse",0],["turkey",0],["whale",1],["snake",1],["crocodile",1],["elephant",1]]},{"id":"a_emu","icon":"🦤","title":"Эму из Австралии","t":"quiz","tasks":[{"t":"read","q":"This is an emu. Emus are from Australia. In Australia there are a lot of emu farms. Emus are very tall with a big body, a small head and long legs. The emu's body and legs are brown and its head and neck are blue. Emus can run very fast, but they can't fly! They eat fruit and insects. Their eggs are green! Emus are very interesting birds!","img":"emu.webp"},{"t":"mc","q":"Which number is the emu's head?","a":"1","o":["1","2","3","4"],"img":"emu.webp","say":null},{"t":"mc","q":"Which number is the emu's legs?","a":"4","o":["4","1","2","3"],"img":"emu.webp","say":null},{"t":"mc","q":"Where are emus from?","a":"Australia","o":["Australia","Africa","The UK"],"img":null,"say":null},{"t":"mc","q":"Can emus fly?","a":"No","o":["No","Yes"],"img":null,"say":null},{"t":"mc","q":"What colour are their eggs?","a":"Green","o":["Green","Blue","Brown"],"img":null,"say":null}]}]}]},$=s=>document.querySelector(s),app=$('#app');
+let S={};try{S=JSON.parse(localStorage.getItem('s2')||'{}')}catch(e){}
+const xp=()=>Object.values(S).reduce((a,b)=>a+b,0);
+const shuf=a=>a.map(x=>[Math.random(),x]).sort((p,q)=>p[0]-q[0]).map(x=>x[1]);
+const norm=s=>s.toLowerCase().replace(/[’]/g,"'").replace(/\s+/g,' ').trim();
+let AC;function snd(ok){try{AC=AC||new AudioContext();const o=AC.createOscillator(),g=AC.createGain(),t=AC.currentTime;o.connect(g);g.connect(AC.destination);o.type='triangle';o.frequency.setValueAtTime(ok?660:220,t);o.frequency.setValueAtTime(ok?880:170,t+.12);g.gain.setValueAtTime(.2,t);g.gain.exponentialRampToValueAtTime(.001,t+.3);o.start();o.stop(t+.3)}catch(e){}}
+function say(t){try{speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t);u.lang='en-GB';u.rate=.85;speechSynthesis.speak(u)}catch(e){}}
+function boom(){for(let i=0;i<14;i++){const s=document.createElement('span');s.textContent=['⭐','🎉','✨','🍀'][i%4];s.className='cf';s.style.left=Math.random()*95+'vw';s.style.animationDelay=Math.random()*.3+'s';document.body.append(s);setTimeout(()=>s.remove(),2000)}}
+const PR=['Great!','Super!','Well done!','Yes!','Wow!'];
+function home(){let h='<div class="hd"><img class="av" src="chuckles.webp"><div><b>Spotlight 3</b><br>Module 5 · Furry friends!</div><div class="xp">⭐ '+xp()+'</div></div>';
+ D.units.forEach(u=>{h+='<h2>'+u.title+'</h2><div class="g">'+u.acts.map(a=>'<button class="tile" data-a="'+a.id+'"><span>'+a.icon+'</span>'+a.title+'<small>'+('⭐'.repeat(S[a.id]||0)||'·')+'</small></button>').join('')+'</div><button class="pg" data-p="'+u.id+'">📖 Страницы учебника</button>'});
+ app.innerHTML=h;app.querySelectorAll('[data-a]').forEach(b=>b.onclick=()=>run(b.dataset.a));
+ app.querySelectorAll('[data-p]').forEach(b=>b.onclick=()=>{const u=D.units.find(u=>u.id==b.dataset.p);app.innerHTML='<button id="h">⬅ Назад</button><div class="gal">'+u.pages.map(p=>'<img loading="lazy" src="'+p+'">').join('')+'</div>';$('#h').onclick=home})}
+function run(id){const a=D.units.flatMap(u=>u.acts).find(a=>a.id==id);({order:orderG,sort:sortG,quiz:quizG})[a.t](a)}
+function done(a,st){S[a.id]=Math.max(S[a.id]||0,st);try{localStorage.setItem('s2',JSON.stringify(S))}catch(e){}boom();snd(1);
+ app.innerHTML='<div class="card"><img class="av" src="chuckles.webp"><div>'+(st==3?'Отлично! 🏆':'Молодец!')+'</div><div style="font-size:44px">'+'⭐'.repeat(st)+'</div></div><button class="m" id="r">Ещё раз 🔁</button><button id="h">⬅ К заданиям</button>';
+ $('#r').onclick=()=>run(a.id);$('#h').onclick=home}
+const stars=(e,n)=>e==0?3:e<=Math.ceil(n/3)?2:1;
+function quizG(a){let i=0,e=0,lock;const T=a.tasks,N=T.filter(t=>t.t!='read').length;
+ const show=()=>{if(i>=T.length)return done(a,stars(e,N));const t=T[i];lock=false;
+  const h='<button id="h">⬅</button><div class="bar"><i style="width:'+i/T.length*100+'%"></i></div>';
+  app.innerHTML=h+'<div class="card'+(t.t=='read'?' rd':'')+'">'+(t.img?'<img class="pic" src="'+t.img+'">':'')+'<div>'+t.q+'</div>'+(/[a-z]/i.test(t.q)?'<button class="say" id="sy">🔊</button>':'')+'</div><div id="o" style="display:flex;flex-direction:column;gap:10px"></div><div id="fb"></div><button class="m hide" id="nx">Дальше ▶</button>';
+  $('#h').onclick=home;$('#sy').onclick=()=>say((t.say||t.q).replace(/_+/g,'blank'));$('#nx').onclick=()=>{i++;show()};const o=$('#o');
+  if(t.t=='read'){$('#nx').classList.remove('hide');setTimeout(()=>say(t.q),300)}
+  else if(t.t=='mc')shuf(t.o).forEach(x=>{const b=document.createElement('button');b.textContent=x;b.onclick=()=>fin(x==t.a,b);o.append(b)});
+  else{o.innerHTML='<input id="in" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" placeholder="впиши слово"><button class="m" id="ck">Проверить</button>';
+   const go=()=>{if(lock)return;const v=$('#in').value;if(!v.trim())return;$('#in').disabled=true;$('#ck').classList.add('hide');fin(norm(v)==norm(t.a))};$('#ck').onclick=go;$('#in').onkeydown=k=>{if(k.key=='Enter')go()};$('#in').focus()}
+  function fin(ok,b){if(lock)return;lock=true;if(!ok)e++;snd(ok);if(ok)boom();
+   if(b){b.classList.add(ok?'ok':'bad');document.querySelectorAll('#o button').forEach(x=>{if(!ok&&x.textContent==t.a)x.classList.add('ok')})}
+   $('#fb').textContent=ok?PR[Math.random()*5|0]+' ✅':'❌ '+t.a;if(ok)say(PR[0]);
+   if(b&&ok)setTimeout(()=>{if(lock&&T[i]===t&&$('#nx')){i++;show()}},900);else $('#nx').classList.remove('hide')}};
+ show()}
+function orderG(a){let nx=1,e=0;app.innerHTML='<button id="h">⬅</button><div class="card">Расставь историю по порядку: нажимай на картинки 1 → 6 🚂</div><div class="pan" id="pn"></div>';$('#h').onclick=home;
+ shuf(a.imgs.map((s,k)=>[s,k+1])).forEach(([s,n])=>{const d=document.createElement('div');d.innerHTML='<img src="'+s+'">';d.onclick=()=>{if(d.querySelector('b'))return;if(n==nx){snd(1);d.insertAdjacentHTML('beforeend','<b>'+n+'</b>');nx++;if(nx>6)setTimeout(()=>done(a,stars(e,6)),500)}else{e++;snd(0);d.classList.add('shake');setTimeout(()=>d.classList.remove('shake'),400)}};$('#pn').append(d)})}
+function sortG(a){let e=0,left=a.items.length,sel=null;
+ app.innerHTML='<button id="h">⬅</button><div class="card" style="font-size:19px">Перетащи картинку в нужную рамку (или нажми на картинку, потом на рамку)</div><div class="zs">'+a.cats.map((c,k)=>'<div class="z" data-z="'+k+'"><h3>'+(k?'🌿 ':'🏠 ')+c+'</h3></div>').join('')+'</div><div class="pool" id="pl"></div>';$('#h').onclick=home;
+ const drop=(im,z)=>{if(+z.dataset.z==im.dataset.c){snd(1);im.removeAttribute('style');im.className='';im.style.cssText='';z.append(im);im.onpointerdown=null;im.onclick=null;sel=null;if(!--left)setTimeout(()=>done(a,stars(e,a.items.length)),500)}else{e++;snd(0);im.style.transform='';im.classList.add('shake');setTimeout(()=>im.classList.remove('shake'),400)}};
+ document.querySelectorAll('.z').forEach(z=>z.onclick=()=>{if(sel)drop(sel,z)});
+ shuf(a.items).forEach(([n,c])=>{const im=document.createElement('img');im.src=n+'.webp';im.dataset.c=c;let x0,y0,mv;
+  im.onpointerdown=ev=>{x0=ev.clientX;y0=ev.clientY;mv=false;im.setPointerCapture(ev.pointerId)};
+  im.onpointermove=ev=>{if(x0==null)return;const dx=ev.clientX-x0,dy=ev.clientY-y0;if(Math.hypot(dx,dy)>8)mv=true;if(mv){im.style.transform='translate('+dx+'px,'+dy+'px)';im.style.zIndex=9}};
+  im.onpointerup=ev=>{x0=null;if(mv){im.style.visibility='hidden';const el=document.elementFromPoint(ev.clientX,ev.clientY);im.style.visibility='';const z=el&&el.closest('.z');if(z)drop(im,z);else im.style.transform=''}else{if(sel)sel.classList.remove('sel');sel=im;im.classList.add('sel')}};
+  $('#pl').append(im)})}
+home();
+if('serviceWorker' in navigator)navigator.serviceWorker.register('sw.js');
+</script></body></html>
